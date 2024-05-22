@@ -12,6 +12,8 @@ const config: Config = {
         "custom-purple": "#903DF7",
         "custom-purple-dark": "#180A2A",
         "custom-bg-radiant": "#E1CDFD",
+        "custom-gray": "#626262",
+        "custom-red-chip": "#B21A1A",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

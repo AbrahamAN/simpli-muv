@@ -1,9 +1,9 @@
 "use client";
 
-import CardCarousel from "@/app/components/cardCarousel/card";
+import CardCarousel from "@/app/components/cardCarousel/cardCarousel";
 import Carousel from "@/app/components/carousel/carousel";
 import { Menu } from "@/app/components/menu/menu";
-import { motos } from "@/app/contants/motos";
+import { motorcycles } from "@/app/contants/motorcycles";
 import { useRouter } from "next/navigation";
 
 export const Overview = () => {
@@ -37,19 +37,19 @@ export const Overview = () => {
           <Carousel
             className='rounded-lg  w-full '
             groupContent={true}
-            content={motos.map((moto) => (
+            content={motorcycles.map((motorcycle) => (
               <CardCarousel
-                key={moto.id}
-                alt='moto'
+                key={motorcycle.id}
+                alt='motorcycle'
                 height={250}
                 width={250}
                 onClickPrimary={() => router.push("/motos")}
                 onClickSecondary={() => console.log("secondary")}
-                src={moto.img}
+                src={motorcycle.img}
                 textButton='Reservar'
-                title={moto.title}
-                textPrimaryButton={moto.textPrimaryButton}
-                textSecondaryButton={moto.textSecondaryButton}
+                title={motorcycle.title}
+                textPrimaryButton={motorcycle.textPrimaryButton}
+                textSecondaryButton={motorcycle.textSecondaryButton}
               />
             ))}
           />
