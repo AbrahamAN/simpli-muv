@@ -1,36 +1,29 @@
 "use client";
 
+import { formatUSD } from "@/app/utils/format";
 import Image from "next/image";
 
 interface CardMotorcycleProps {
   img: string;
   title: string;
-  price: string;
+  price: number;
   dealership: string;
-  engine: string;
   descriptionEngine: string;
-  category: string;
-  descriptionCategory: string;
-  tallness: string;
-  descriptionTallness: string;
-  chipText: string;
-  textOfert?: string;
-  onClick: () => void;
+  descriptionYear: string;
+  descriptionKm: string;
+  currency: string;
+  onClick?: () => void;
 }
 
 const CardMotorcycle = ({
   img,
   title,
   price,
-  chipText,
   dealership,
-  engine,
   descriptionEngine,
-  category,
-  descriptionCategory,
-  tallness,
-  descriptionTallness,
-  textOfert,
+  descriptionYear,
+  descriptionKm,
+  currency,
   onClick,
 }: CardMotorcycleProps) => {
   return (
@@ -38,24 +31,23 @@ const CardMotorcycle = ({
       className='flex flex-col border-gray-200 border rounded-lg p-5 items-center cursor-pointer relative'
       onClick={onClick}
     >
-      {textOfert && (
-        <div className='absolute  border bg-custom-bg-radiant top-4 left-4 p-1 rounded-lg'>
-          <h2 className='text-custom-purple font-medium '>{textOfert}</h2>
-        </div>
-      )}
+      <Image
+        src={img}
+        alt={title}
+        width={288}
+        height={288}
+        className='w-full h-72 object-contain'
+      />
 
-      <Image src={img} alt={title} width={288} height={288} />
-      <div className='flex items-center border border-gray-200   rounded-full w-28 gap-2 '>
-        <div className='inline-flex items-center bg-custom-red-chip text-white text-sm font-bold px-3 py-3 rounded-full' />
-        <h2 className='text-custom-gray text-xs font-semibold'>{chipText}</h2>
-      </div>
       <h2 className='text-lg font-bold'>{title}</h2>
-      <h3 className='text-custom-gray text-xs'>
-        ARG{" "}
-        <span className='text-custom-gray font-bold text-base'>{price}</span>
+      <h3 className='text-custom-gray text-xs gap-1 flex items-center'>
+        <span> {currency}</span>
+        <span className='text-custom-gray font-bold text-base'>
+          {formatUSD(price)}
+        </span>
       </h3>
-      <div className='items-center flex flex-col '>
-        <div className='flex items-center my-2'>
+      <div className='items-center flex flex-col  '>
+        <div className='flex items-center my-2 gap-2'>
           <svg
             width='15'
             height='15'
@@ -72,7 +64,7 @@ const CardMotorcycle = ({
           <h4 className='text-custom-gray text-xs'>{dealership}</h4>
         </div>
         <div className='flex w-full items-center justify-center '>
-          <div className=' border border-gray-200 flex flex-col p-4 items-center rounded-sm h-24 '>
+          <div className=' border border-gray-200 flex flex-col p-4 items-center rounded-sm h-24 max-sm:w-16 '>
             <svg
               width='25'
               height='25'
@@ -86,10 +78,10 @@ const CardMotorcycle = ({
               />
             </svg>
 
-            <h2 className='text-custom-gray text-sm'>{engine}</h2>
-            <h2 className=' text-sm'>{descriptionEngine}</h2>
+            <h2 className='text-custom-gray text-sm max-sm:text-xs'>Motor</h2>
+            <h2 className=' text-sm max-sm:text-xs'>{descriptionEngine}</h2>
           </div>
-          <div className=' border border-gray-200 flex flex-col  p-4  items-center  rounded-sm h-24 '>
+          <div className=' border border-gray-200 flex flex-col  p-4  items-center  rounded-sm h-24  max-sm:w-16 '>
             <svg
               width='25'
               height='25'
@@ -102,10 +94,10 @@ const CardMotorcycle = ({
                 fill='#903DF7'
               />
             </svg>
-            <h2 className='text-custom-gray text-sm'>{category}</h2>
-            <h2 className=' text-sm'>{descriptionCategory}</h2>
+            <h2 className='text-custom-gray text-sm max-sm:text-xs'>Año</h2>
+            <h2 className=' text-sm max-sm:text-xs'>{descriptionYear}</h2>
           </div>
-          <div className=' border border-gray-200 flex flex-col  p-4  items-center  rounded-sm  h-24'>
+          <div className=' border border-gray-200 flex flex-col  p-4  items-center  rounded-sm  h-24  max-sm:w-16'>
             <svg
               width='25'
               height='25'
@@ -118,8 +110,8 @@ const CardMotorcycle = ({
                 fill='#903DF7'
               />
             </svg>
-            <h2 className='text-custom-gray text-sm'>{tallness}</h2>
-            <h2 className=' text-sm'>{descriptionTallness}</h2>
+            <h2 className='text-custom-gray text-sm  max-sm:text-xs'>KM</h2>
+            <h2 className=' text-sm max-sm:text-xs'>{descriptionKm}</h2>
           </div>
         </div>
       </div>

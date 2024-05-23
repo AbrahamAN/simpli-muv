@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/outline";
 import { useSwipeable } from "react-swipeable";
 
 interface CarouselProps {
@@ -22,8 +21,9 @@ const Carousel = ({
 
   let groupedContent: (string | JSX.Element)[][] = [];
   if (groupContent) {
-    for (let i = 0; i < content.length; i += 4) {
-      groupedContent.push(content.slice(i, i + 4));
+    const groupSize = window.innerWidth <= 768 ? 2 : 4;
+    for (let i = 0; i < content.length; i += groupSize) {
+      groupedContent.push(content.slice(i, i + groupSize));
     }
   } else {
     for (let i = 0; i < content.length; i++) {
@@ -73,7 +73,7 @@ const Carousel = ({
       <button
         onClick={prevContent}
         disabled={currentIndex === 0}
-        className='absolute -left-12 top-1/2 transform -translate-y-1/2  rounded-full p-2 sm:hidden lg:block'
+        className='absolute -left-12 top-1/2 transform -translate-y-1/2  rounded-full p-2 max-sm:hidden lg:block'
       >
         <svg
           xmlns='http://www.w3.org/2000/svg'
@@ -96,7 +96,7 @@ const Carousel = ({
       <button
         onClick={nextContent}
         disabled={currentIndex === groupedContent.length - 1}
-        className='absolute -right-12 top-1/2 transform -translate-y-1/2  rounded-full p-2 sm:hidden lg:block'
+        className='absolute -right-12 top-1/2 transform -translate-y-1/2  rounded-full p-2 max-sm:hidden lg:block'
       >
         <svg
           xmlns='http://www.w3.org/2000/svg'
@@ -117,11 +117,11 @@ const Carousel = ({
           />
         </svg>
       </button>
-      <div className='block absolute -bottom-12 left-1/2 transform -translate-x-1/2 space-x-2'>
+      <div className='block absolute -bottom-12 left-1/2 transform -translate-x-1/2 space-x-2   m-auto'>
         {groupedContent.map((_, index) => (
           <div
             key={index}
-            className={`inline-block h-2 w-10 rounded-full ${
+            className={`inline-block h-2 w-6 rounded-full ${
               currentIndex === index ? "bg-fuchsia-700" : "bg-gray-300"
             }`}
           />

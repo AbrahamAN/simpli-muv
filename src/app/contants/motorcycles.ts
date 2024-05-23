@@ -75,7 +75,7 @@ export const motorcyclesCategory = [
   {
     id: 1,
     textOfert: "NOVEDAD",
-    img: "https://s3-alpha-sig.figma.com/img/73d3/285b/899fb3dc8120c535f44f62f96c5a56f2?Expires=1717372800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ic-gdYvS~NQzjDeuoo4mFlhG99z7HIUwQ8Ti8AovMDLBdK6tmFMAb54Z6lqDfVi48iXLD2SpsD5xjsfsSqqYXvG3P7b3LuKb9Vt00uJgTKcU7YM4NTRl77Ns8Sjq0EIlZMHPc6NUgqOm2fdhK4iMygU~UsPd~LIjjZS5vqq-iaSAl05ZpsMjJsa6hC~5EAHNvxoBGDSlJ6qRhpfm--mu~LOyCutGyRV576Tj61A2V7eHHiakA1CxnANdKnZNgCuNY3~nkbw5IJU5aupvJ1u2fp6GZQG8g5viKTH1QDeQTXg2RZlZ8TlMmRdrAL57RLfrkyTIBu3MVNNEDgLuf2Nvyw__",
+    img: "https://bucket-rn-40-dev-test.s3.amazonaws.com/thumbnail_large_26911006_d95f_4a71_adc3_e7875189081d_f48f6c633a.webp",
     chipText: "Fireball Red",
     title: "Meteor 350",
     price: "ARG $3.290.000",
