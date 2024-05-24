@@ -52,7 +52,7 @@ export const Menu = () => {
         </button>
       </div>
       <ul
-        className={`flex gap-10  flex-col sm:flex-row items-center w-2/5    max-sm:w-full ${
+        className={`flex gap-10  flex-col sm:flex-row items-center w-2/5 max-sm:mt-2    max-sm:w-full ${
           isOpen ? "block" : "hidden"
         } sm:flex`}
       >

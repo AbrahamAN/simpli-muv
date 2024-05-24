@@ -1,17 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { Menu } from "../components/menu/menu";
 import { useStoreGlobal } from "../store/store";
+import { Layout } from "../layout/layout";
 
 const ThankYouPage = () => {
-  const { motorcycle, name, lastname, email, phone } = useStoreGlobal();
+  const { motorcycles, name, lastname, email, phone } = useStoreGlobal();
 
   return (
-    <div className='w-full flex flex-col justify-center items-center'>
-      <Menu />
-      <div className='  flex flex-col items-center  justify-center w-2/5 gap-10 '>
-        <div className='flex flex-col justify-center items-center gap-1'>
+    <Layout className='w-full flex flex-col justify-center items-center'>
+      <div className='  flex flex-col items-center  justify-center w-full max-sm:w-full gap-10 '>
+        <div className='flex flex-col justify-center items-center gap-1 text-center'>
           <svg
             width='33'
             height='33'
@@ -24,21 +23,21 @@ const ThankYouPage = () => {
               fill='#903DF7'
             />
           </svg>
+          <h2 className='text-2xl font-bold'>We’ve Received Your Request!</h2>
           <h2 className=' text-sm text-custom-gray'>
             A dealer will follow up with next steps regarding your reservation.
           </h2>
-          <h2 className='text-2xl font-bold'>We’ve Received Your Request!</h2>
         </div>
 
-        <div className='border border-custom-gray p-4 rounded-lg flex flex-col  '>
+        <div className='border border-custom-gray p-4 rounded-lg w-full  max-sm:w-3/4 flex flex-col my-5  '>
           <h2 className=' font-bold'>Reservation Details</h2>
           <div className='border-t border-gray-200 my-4'></div>
-          <h2 className='font-bold'>{motorcycle?.[0].name}</h2>
+          <h2 className='font-bold'>{motorcycles?.[0].name}</h2>
           <span className='text-custom-gray'>
-            {motorcycle?.[0].variants[0].details.features[1].value}
+            {motorcycles?.[0].variants[0].details.features[1].value}
           </span>
           <span className='text-custom-gray'>
-            {motorcycle?.[0].variants[0].details.features[0].value}
+            {motorcycles?.[0].variants[0].details.features[0].value}
           </span>
           <div className='border-t border-gray-200 my-4'></div>
           <h2 className='font-bold'>Accessories</h2>
@@ -63,7 +62,7 @@ const ThankYouPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

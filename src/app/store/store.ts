@@ -3,10 +3,10 @@ import { MotorcycleTypes } from "../motorcycles/types";
 import { accessories } from "../accessories/types/accessories";
 
 type StoreGlobal = {
-  motorcycle: MotorcycleTypes[] | null;
+  motorcycles: MotorcycleTypes[] | null;
   accessories: accessories[] | null;
   setAccessories: (accessories: accessories[] | null) => void;
-  setMotorcycle: (motorcycle: MotorcycleTypes[] | null) => void;
+  setMotorcycles: (motorcycle: MotorcycleTypes[] | null) => void;
   name: string;
   lastname: string;
   email: string;
@@ -20,10 +20,10 @@ type StoreGlobal = {
 };
 
 export const useStoreGlobal = create<StoreGlobal>((set) => ({
-  motorcycle: null,
+  motorcycles: null,
   accessories: null,
   setAccessories: (accessories) => set({ accessories }),
-  setMotorcycle: (motorcycle) => set({ motorcycle }),
+  setMotorcycles: (motorcycle) => set({ motorcycles: motorcycle }),
   name: "",
   lastname: "",
   email: "",

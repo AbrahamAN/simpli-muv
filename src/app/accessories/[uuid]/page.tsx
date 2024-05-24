@@ -1,54 +1,19 @@
 "use client";
 import Carousel from "@/app/components/carousel/carousel";
-import { Menu } from "@/app/components/menu/menu";
-import { getAccessoriesById } from "@/app/services/getAccessoriesById";
-import { createLead } from "@/app/services/postCreateLead";
-import { useStoreGlobal } from "@/app/store/store";
-import { formatARS, formatUSD } from "@/app/utils/format";
-import { useParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Layout } from "@/app/layout/layout";
+import { formatARS } from "@/app/utils/format";
+import { useParams } from "next/navigation";
+import { useAccessoryDetails } from "../hooks/useAccessoryDetails";
 
 const AccessoriesIdPage = () => {
   const params = useParams();
   const { uuid } = params;
-  const router = useRouter();
 
-  const { accessories, setAccessories, quantity, setQuantity } =
-    useStoreGlobal();
-
-  useEffect(() => {
-    async function fetchMotorcycle() {
-      const data = await getAccessoriesById(uuid as string);
-      setAccessories(data);
-    }
-
-    fetchMotorcycle();
-  }, [uuid, setAccessories]);
-
-  const handleFormSubmit = async (e: React.MouseEvent) => {
-    e.preventDefault();
-
-    if (Array.isArray(uuid)) {
-      console.error("UUID no puede ser un array");
-      return;
-    }
-
-    const data = {
-      uuid: uuid,
-      accesories: [],
-    };
-
-    try {
-      await createLead(data);
-      router.push("/detailsBought");
-    } catch (error) {
-      console.error(`Error: ${error}`);
-    }
-  };
+  const { accessories, quantity, setQuantity, handleFormSubmit } =
+    useAccessoryDetails(uuid as string);
   return (
-    <div>
+    <Layout>
       <div>
-        <Menu />
         <div className='grid grid-cols-1 md:grid-cols-2 justify-center w-full h-min mt-10 gap-28 px-32 py-10 max-sm:p-5'>
           <div className='flex flex-col gap-20  justify-center items-center'>
             <Carousel
@@ -107,7 +72,7 @@ const AccessoriesIdPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

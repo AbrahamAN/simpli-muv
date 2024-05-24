@@ -1,22 +1,21 @@
 "use client";
 import Carousel from "@/app/components/carousel/carousel";
-import { getMotorcycleById } from "@/app/services/getMotorcyleById";
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
 import { formatUSD } from "@/app/utils/format";
-import { Menu } from "@/app/components/menu/menu";
 import Link from "next/link";
-import { createLead } from "@/app/services/postCreateLead";
-import { useRouter } from "next/navigation";
-import { useStoreGlobal } from "@/app/store/store";
 
-const MotosId = () => {
+import { Layout } from "@/app/layout/layout";
+import { useMotorcycleDetails } from "../hooks/useMotorcycleDetails";
+
+const MotorcycleId = () => {
   const params = useParams();
   const { uuid } = params;
-  const router = useRouter();
+
   const {
-    motorcycle,
-    setMotorcycle,
+    showDetails,
+    motorcycles,
+    handleButtonClick,
+    handleFormSubmit,
     name,
     lastname,
     email,
@@ -25,76 +24,30 @@ const MotosId = () => {
     setLastname,
     setEmail,
     setPhone,
-  } = useStoreGlobal();
+  } = useMotorcycleDetails(uuid);
 
-  const [showDetails, setShowDetails] = useState(true);
+  console.log(motorcycles);
 
-  useEffect(() => {
-    async function fetchMotorcycle() {
-      const data = await getMotorcycleById(uuid as string);
-      setMotorcycle(data);
-    }
-
-    fetchMotorcycle();
-  }, [uuid, setMotorcycle]);
-
-  const handleButtonClick = () => {
-    setShowDetails(false);
-  };
-
-  const handleFormSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (Array.isArray(uuid)) {
-      console.error("UUID no puede ser un array");
-      return;
-    }
-
-    const data = {
-      uuid: uuid,
-      accesories: [],
-      contact: {
-        firstname: name,
-        lastname: lastname,
-        email: email,
-        phone: phone,
-        finace: true,
-        trade: false,
-      },
-    };
-    setName(name);
-    setLastname(lastname);
-    setEmail(email);
-    setPhone(phone);
-
-    try {
-      await createLead(data);
-      router.push("/thankYou");
-    } catch (error) {
-      console.error(`Error: ${error}`);
-    }
-  };
   return (
-    <div>
-      <Menu />
+    <Layout>
       <div className='grid grid-cols-1 md:grid-cols-2 justify-center w-full h-min mt-10 gap-28 px-32 max-sm:p-5'>
         <div className='flex flex-col gap-20  justify-center items-center'>
           <Carousel
             className='w-full h-72 object-contain '
             content={
-              motorcycle?.[0]?.variants[0]?.images.map((image) => image.url) ||
+              motorcycles?.[0]?.variants[0]?.images.map((image) => image.url) ||
               []
             }
             width={800}
             height={300}
           />
           <div className='flex flex-col justify-center items-center max-sm:items-start'>
-            <h2>{motorcycle?.[0].name}</h2>
+            <h2>{motorcycles?.[0].name}</h2>
             <span className='text-custom-gray text-sm'>
-              Motor : {motorcycle?.[0].variants[0].details.features[1].value}
+              Motor : {motorcycles?.[0].variants[0].details.features[1].value}
             </span>
             <span className='text-custom-gray text-sm'>
-              Potencia: {motorcycle?.[0].variants[0].details.features[0].value}
+              Potencia: {motorcycles?.[0].variants[0].details.features[0].value}
             </span>
           </div>
         </div>
@@ -113,14 +66,14 @@ const MotosId = () => {
                 fill='#9A9A9A'
               />
             </svg>
-            <Link className='text-custom-gray' href={`/motorcycles`}>
-              Volver{" "}
+            <Link className='text-custom-gray' href={`/motorcycless`}>
+              Volver
             </Link>
           </div>
 
-          <h2 className=' text-xl font-bold'>{motorcycle?.[0].name}</h2>
+          <h2 className=' text-xl font-bold'>{motorcycles?.[0].name}</h2>
           <h2 className='text-custom-gray font-semibold'>
-            {formatUSD(motorcycle?.[0]?.variants[0]?.prices[0]?.amount || 0)}
+            {formatUSD(motorcycles?.[0]?.variants[0]?.prices[0]?.amount || 0)}
           </h2>
           <div className='border-t border-gray-200 my-4'></div>
           <div className='flex flex-col gap-3 '>
@@ -130,25 +83,25 @@ const MotosId = () => {
                 <span className='text-custom-gray  text-sm'>
                   {" "}
                   Motor :{" "}
-                  {motorcycle?.[0].variants[0].details.features[1].value}
+                  {motorcycles?.[0].variants[0].details.features[1].value}
                 </span>
                 <span className='text-custom-gray  text-sm'>
                   {" "}
                   Potencia:{" "}
-                  {motorcycle?.[0].variants[0].details.features[0].value}
+                  {motorcycles?.[0].variants[0].details.features[0].value}
                 </span>
                 <div className='flex justify-between items-center max-sm:gap-2 max-sm:h-10 '>
                   <h2 className=' text-custom-gray font-semibold'>Precio</h2>
                   <span className='font-bold  text-sm '>
-                    {motorcycle?.[0]?.variants[0]?.prices[0]?.currency}
+                    {motorcycles?.[0]?.variants[0]?.prices[0]?.currency}
                     {formatUSD(
-                      motorcycle?.[0]?.variants[0]?.prices[0]?.amount || 0
+                      motorcycles?.[0]?.variants[0]?.prices[0]?.amount || 0
                     )}
                   </span>
                 </div>
               </>
             ) : (
-              <form onSubmit={handleFormSubmit} className='space-y-4'>
+              <form onSubmit={handleFormSubmit} className='space-y-4 p-5'>
                 <label className='block'>
                   <span className='font-bold'>Email:</span>
                   <input
@@ -207,8 +160,8 @@ const MotosId = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 
-export default MotosId;
+export default MotorcycleId;

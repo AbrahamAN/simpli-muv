@@ -1,28 +1,15 @@
 "use client";
 import Image from "next/image";
-import { Menu } from "../components/menu/menu";
-import { useEffect } from "react";
-import { getAccessories } from "../services/getAccessories";
-import { useStoreGlobal } from "../store/store";
 import { formatUSD } from "../utils/format";
 import Link from "next/link";
+import { Layout } from "../layout/layout";
+import { useAccessories } from "./hooks/useAccessories";
 
 const Accessories = () => {
-  const { accessories, setAccessories } = useStoreGlobal();
+  const accessories = useAccessories();
 
-  useEffect(() => {
-    async function fetchMotorcycles() {
-      const data = await getAccessories();
-      setAccessories(data);
-    }
-
-    fetchMotorcycles();
-  }, []);
-
-  console.log(accessories, "accessories");
   return (
-    <div>
-      <Menu />
+    <Layout>
       <div className='w-full flex   h-20 items-center justify-center bg-custom-bg-radiant'>
         <h2 className='text-white text-3xl font-bold '>
           Lorem ipsum dolor sit amet
@@ -50,7 +37,7 @@ const Accessories = () => {
           </Link>
         ))}
       </div>
-    </div>
+    </Layout>
   );
 };
 

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Menu } from "../components/menu/menu";
 import { useStoreGlobal } from "../store/store";
 import { formatARS } from "../utils/format";
+import { Layout } from "../layout/layout";
 
 const ThankYouPage = () => {
   const { accessories, quantity } = useStoreGlobal();
@@ -10,9 +11,8 @@ const ThankYouPage = () => {
   console.log(accessories);
 
   return (
-    <div className='w-full flex flex-col justify-center items-center max-sm:p-5'>
-      <Menu />
-      <div className='  flex flex-col items-center  justify-center w-full gap-10 '>
+    <Layout className='w-full flex flex-col justify-center items-center'>
+      <div className='  flex flex-col items-center  justify-center w-full gap-10 max-sm:p-5 '>
         <div className='flex flex-col justify-center items-center gap-1'>
           <svg
             width='33'
@@ -33,7 +33,7 @@ const ThankYouPage = () => {
           </h2>
         </div>
 
-        <div className='border border-custom-gray p-4 rounded-lg  w-5/12 flex flex-col max-sm:w-full max-sm:p-5  '>
+        <div className='border border-custom-gray p-4 rounded-lg  w-full flex flex-col max-sm:w-full max-sm:p-5 my-5  '>
           <h2 className=' font-bold'>Resumen de tu compra</h2>
           <div className='border-t border-gray-200 my-4'></div>
           <h2 className='font-bold'>Productos</h2>
@@ -79,7 +79,7 @@ const ThankYouPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 
