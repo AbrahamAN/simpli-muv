@@ -117,7 +117,7 @@ const Carousel = ({
           />
         </svg>
       </button>
-      <div className='block absolute -bottom-12 left-1/2 transform -translate-x-1/2 space-x-2   m-auto'>
+      <div className='block absolute -bottom-12 left-1/2 transform -translate-x-1/2 space-x-2 w-full text-center   m-auto'>
         {groupedContent.map((_, index) => (
           <div
             key={index}

@@ -1,8 +1,8 @@
 "use client";
-
 import Link from "next/link";
 import { Menu } from "../components/menu/menu";
 import { useStoreGlobal } from "../store/store";
+import { formatARS } from "../utils/format";
 
 const ThankYouPage = () => {
   const { accessories, quantity } = useStoreGlobal();
@@ -10,9 +10,9 @@ const ThankYouPage = () => {
   console.log(accessories);
 
   return (
-    <div className='w-full flex flex-col justify-center items-center'>
+    <div className='w-full flex flex-col justify-center items-center max-sm:p-5'>
       <Menu />
-      <div className='  flex flex-col items-center  justify-center w-2/5 gap-10 '>
+      <div className='  flex flex-col items-center  justify-center w-full gap-10 '>
         <div className='flex flex-col justify-center items-center gap-1'>
           <svg
             width='33'
@@ -33,28 +33,39 @@ const ThankYouPage = () => {
           </h2>
         </div>
 
-        <div className='border border-custom-gray p-4 rounded-lg flex flex-col  '>
+        <div className='border border-custom-gray p-4 rounded-lg  w-5/12 flex flex-col max-sm:w-full max-sm:p-5  '>
           <h2 className=' font-bold'>Resumen de tu compra</h2>
           <div className='border-t border-gray-200 my-4'></div>
           <h2 className='font-bold'>Productos</h2>
           <span>
             {accessories ? (
               <span>
-                {accessories[0].name} (x{quantity})
+                {accessories[0]?.name} (x{quantity})
               </span>
             ) : null}
           </span>
 
           <div className='border-t border-gray-200 my-4'></div>
-          <h2 className='font-bold'>Detalle del pago</h2>
+          <div>
+            <h2 className='font-bold'>Detalle del pago</h2>
+            <h2 className='text-custom-gray text-sm'>
+              Método de pago: Tarjeta de crédito/débito
+            </h2>
+          </div>
+
           <div className='border-t border-gray-200 my-4' />
           <div className='flex items-center justify-between'>
             <span className='text-custom-gray'>Subtotal</span>
-            <span className='text-custom-gray'></span>
+            <span className='text-custom-gray'>
+              {formatARS(
+                (Number(accessories?.[0]?.variants[0]?.prices[0].amount) || 0) *
+                  Number(quantity)
+              )}
+            </span>
           </div>
           <div className='flex items-center justify-between'>
             <span className='text-custom-gray'>Envío Gratis</span>
-            <span className='text-custom-gray'></span>
+            <span className='text-custom-gray'>Gratis</span>
           </div>
 
           <div className='border-t border-gray-200 my-4' />

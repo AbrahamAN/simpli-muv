@@ -77,10 +77,10 @@ const MotosId = () => {
   return (
     <div>
       <Menu />
-      <div className='grid grid-cols-1 md:grid-cols-2 justify-center w-full h-min mt-10 gap-28 px-32'>
+      <div className='grid grid-cols-1 md:grid-cols-2 justify-center w-full h-min mt-10 gap-28 px-32 max-sm:p-5'>
         <div className='flex flex-col gap-20  justify-center items-center'>
           <Carousel
-            className='w-full h-72 object-contain'
+            className='w-full h-72 object-contain '
             content={
               motorcycle?.[0]?.variants[0]?.images.map((image) => image.url) ||
               []
@@ -88,7 +88,7 @@ const MotosId = () => {
             width={800}
             height={300}
           />
-          <div className='flex flex-col justify-center items-center'>
+          <div className='flex flex-col justify-center items-center max-sm:items-start'>
             <h2>{motorcycle?.[0].name}</h2>
             <span className='text-custom-gray text-sm'>
               Motor : {motorcycle?.[0].variants[0].details.features[1].value}
@@ -99,7 +99,7 @@ const MotosId = () => {
           </div>
         </div>
 
-        <div className='flex flex-col gap-2 w-10/12 '>
+        <div className='flex flex-col gap-2 w-10/12  max-sm:w-full'>
           <div className='flex items-center gap-4'>
             <svg
               width='8'
@@ -137,7 +137,7 @@ const MotosId = () => {
                   Potencia:{" "}
                   {motorcycle?.[0].variants[0].details.features[0].value}
                 </span>
-                <div className='flex justify-between '>
+                <div className='flex justify-between items-center max-sm:gap-2 max-sm:h-10 '>
                   <h2 className=' text-custom-gray font-semibold'>Precio</h2>
                   <span className='font-bold  text-sm '>
                     {motorcycle?.[0]?.variants[0]?.prices[0]?.currency}

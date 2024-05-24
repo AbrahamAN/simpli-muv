@@ -49,7 +49,7 @@ const AccessoriesIdPage = () => {
     <div>
       <div>
         <Menu />
-        <div className='grid grid-cols-1 md:grid-cols-2 justify-center w-full h-min mt-10 gap-28 px-32 py-10'>
+        <div className='grid grid-cols-1 md:grid-cols-2 justify-center w-full h-min mt-10 gap-28 px-32 py-10 max-sm:p-5'>
           <div className='flex flex-col gap-20  justify-center items-center'>
             <Carousel
               className='w-full h-72 object-contain'
@@ -66,7 +66,7 @@ const AccessoriesIdPage = () => {
             </div>
           </div>
 
-          <div className='flex flex-col gap-2 w-10/12 '>
+          <div className='flex flex-col gap-2 w-10/12 max-sm:w-full '>
             <h2 className=' text-xl font-bold'>{accessories?.[0].name}</h2>
             <h2 className='text-custom-gray font-semibold'>
               {accessories?.[0]?.variants[0]?.prices[0]?.currency}

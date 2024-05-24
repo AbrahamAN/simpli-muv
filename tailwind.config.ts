@@ -14,6 +14,8 @@ const config: Config = {
         "custom-bg-radiant": "#E1CDFD",
         "custom-gray": "#626262",
         "custom-red-chip": "#B21A1A",
+        "custom-bg-divider": "#261041",
+        "custom-footer-text": "#D5D5D5",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
