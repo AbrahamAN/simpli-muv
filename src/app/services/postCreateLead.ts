@@ -12,7 +12,7 @@ interface Contact {
 interface LeadData {
   uuid: string;
   accesories?: string[];
-  contact: Contact;
+  contact?: Contact;
 }
 
 export const createLead = async (data: LeadData) => {

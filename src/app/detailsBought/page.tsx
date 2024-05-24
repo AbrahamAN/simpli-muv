@@ -5,7 +5,9 @@ import { Menu } from "../components/menu/menu";
 import { useStoreGlobal } from "../store/store";
 
 const ThankYouPage = () => {
-  const { motorcycle, name, lastname, email, phone } = useStoreGlobal();
+  const { accessories, quantity } = useStoreGlobal();
+
+  console.log(accessories);
 
   return (
     <div className='w-full flex flex-col justify-center items-center'>
@@ -24,35 +26,38 @@ const ThankYouPage = () => {
               fill='#903DF7'
             />
           </svg>
+          <h2 className='text-2xl font-bold'>We’ve Received Your Request!</h2>
+
           <h2 className=' text-sm text-custom-gray'>
             A dealer will follow up with next steps regarding your reservation.
           </h2>
-          <h2 className='text-2xl font-bold'>We’ve Received Your Request!</h2>
         </div>
 
         <div className='border border-custom-gray p-4 rounded-lg flex flex-col  '>
-          <h2 className=' font-bold'>Reservation Details</h2>
+          <h2 className=' font-bold'>Resumen de tu compra</h2>
           <div className='border-t border-gray-200 my-4'></div>
-          <h2 className='font-bold'>{motorcycle?.[0].name}</h2>
-          <span className='text-custom-gray'>
-            {motorcycle?.[0].variants[0].details.features[1].value}
+          <h2 className='font-bold'>Productos</h2>
+          <span>
+            {accessories ? (
+              <span>
+                {accessories[0].name} (x{quantity})
+              </span>
+            ) : null}
           </span>
-          <span className='text-custom-gray'>
-            {motorcycle?.[0].variants[0].details.features[0].value}
-          </span>
+
           <div className='border-t border-gray-200 my-4'></div>
-          <h2 className='font-bold'>Accessories</h2>
-          <span>Jacket Rental</span>
-          <div className='border-t border-gray-200 my-4'></div>
-          <h2 className='font-bold'>Customer Contact Information</h2>
-          <div className='flex flex-col '>
-            <span className='text-custom-gray'>
-              {name} {lastname}
-            </span>
-            <span className='text-custom-gray'>{email}</span>
-            <span className='text-custom-gray'>{phone}</span>
+          <h2 className='font-bold'>Detalle del pago</h2>
+          <div className='border-t border-gray-200 my-4' />
+          <div className='flex items-center justify-between'>
+            <span className='text-custom-gray'>Subtotal</span>
+            <span className='text-custom-gray'></span>
           </div>
-          <div className='border-t border-gray-200 my-4'></div>
+          <div className='flex items-center justify-between'>
+            <span className='text-custom-gray'>Envío Gratis</span>
+            <span className='text-custom-gray'></span>
+          </div>
+
+          <div className='border-t border-gray-200 my-4' />
           <div className=' flex justify-center mt-2'>
             <Link
               href='/'

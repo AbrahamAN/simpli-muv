@@ -43,7 +43,7 @@ export const Overview = () => {
                 alt='motorcycle'
                 height={250}
                 width={250}
-                onClickPrimary={() => router.push("/motos")}
+                onClickPrimary={() => router.push("/motorcycles")}
                 onClickSecondary={() => console.log("secondary")}
                 src={motorcycle.img}
                 textButton='Reservar'

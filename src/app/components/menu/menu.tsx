@@ -56,8 +56,8 @@ export const Menu = () => {
           isOpen ? "block" : "hidden"
         } sm:flex`}
       >
-        <Link href='/motos'>Motos </Link>
-        <Link href='/accesorios'>Accesorios </Link>
+        <Link href='/motorcycles'>Motos </Link>
+        <Link href='/accessories'>Accesorios </Link>
         <Link href='/'>Indumentaria </Link>
         <Link href='/'>Eventos </Link>
         <Link href='/'>Servicios </Link>

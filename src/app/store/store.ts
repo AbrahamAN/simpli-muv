@@ -1,8 +1,11 @@
 import create from "zustand";
-import { MotorcycleTypes } from "../motos/types";
+import { MotorcycleTypes } from "../motorcycles/types";
+import { accessories } from "../accessories/types/accessories";
 
-type MotorcycleStore = {
+type StoreGlobal = {
   motorcycle: MotorcycleTypes[] | null;
+  accessories: accessories[] | null;
+  setAccessories: (accessories: accessories[] | null) => void;
   setMotorcycle: (motorcycle: MotorcycleTypes[] | null) => void;
   name: string;
   lastname: string;
@@ -12,10 +15,14 @@ type MotorcycleStore = {
   setLastname: (lastName: string) => void;
   setEmail: (email: string) => void;
   setPhone: (phone: string) => void;
+  quantity: number;
+  setQuantity: (fn: (quantity: number) => number) => void;
 };
 
-export const useMotorcycleStore = create<MotorcycleStore>((set) => ({
+export const useStoreGlobal = create<StoreGlobal>((set) => ({
   motorcycle: null,
+  accessories: null,
+  setAccessories: (accessories) => set({ accessories }),
   setMotorcycle: (motorcycle) => set({ motorcycle }),
   name: "",
   lastname: "",
@@ -25,4 +32,6 @@ export const useMotorcycleStore = create<MotorcycleStore>((set) => ({
   setLastname: (lastName) => set({ lastname: lastName }),
   setEmail: (email) => set({ email: email }),
   setPhone: (phone) => set({ phone: phone }),
+  quantity: 1,
+  setQuantity: (fn) => set((state) => ({ quantity: fn(state.quantity) })),
 }));

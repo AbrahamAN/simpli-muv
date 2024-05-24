@@ -28,9 +28,11 @@ const MotorcyclesPage = () => {
       </div>
       <div className='grid grid-cols-4 gap-10 w-full p-20 max-sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
         {motorcycles.map((motorcycle) => {
-          console.log(motorcycle);
           return (
-            <Link href={`/motos/${motorcycle.uuid}`} key={motorcycle.uuid}>
+            <Link
+              href={`/motorcycles/${motorcycle.uuid}`}
+              key={motorcycle.uuid}
+            >
               <CardMotorcycle
                 img={motorcycle.variants[0].images[0].url}
                 title={motorcycle.name}

@@ -8,7 +8,7 @@ import { Menu } from "@/app/components/menu/menu";
 import Link from "next/link";
 import { createLead } from "@/app/services/postCreateLead";
 import { useRouter } from "next/navigation";
-import { useMotorcycleStore } from "@/app/store/store";
+import { useStoreGlobal } from "@/app/store/store";
 
 const MotosId = () => {
   const params = useParams();
@@ -25,7 +25,7 @@ const MotosId = () => {
     setLastname,
     setEmail,
     setPhone,
-  } = useMotorcycleStore();
+  } = useStoreGlobal();
 
   const [showDetails, setShowDetails] = useState(true);
 
@@ -36,7 +36,7 @@ const MotosId = () => {
     }
 
     fetchMotorcycle();
-  }, [uuid]);
+  }, [uuid, setMotorcycle]);
 
   const handleButtonClick = () => {
     setShowDetails(false);
@@ -113,7 +113,7 @@ const MotosId = () => {
                 fill='#9A9A9A'
               />
             </svg>
-            <Link className='text-custom-gray' href={`/motos`}>
+            <Link className='text-custom-gray' href={`/motorcycles`}>
               Volver{" "}
             </Link>
           </div>
